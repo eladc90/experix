@@ -1,0 +1,20 @@
+#ifndef __HEAP_ERR_H__
+#define __HEAP_ERR_H__
+
+
+typedef enum 
+{
+	ERR_OK,		
+    ERR_GENERAL,
+    ERR_NOT_INITIALZED,
+    ERR_ALLOCTAION_FAILED,
+    ERR_UNDERFLOW,
+    ERR_OVERFLOW,
+    ERR_WRONG_INDEX,
+	ERR_INVALID_INPUT,
+	ERR_NULL
+}ADTErr;
+
+
+
+#endif /*__HEAP_ERR_H__ */
