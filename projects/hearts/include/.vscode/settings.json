@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "round.h": "c",
+        "player.h": "c",
+        "hearterr.h": "c",
+        "table.h": "c",
+        "deck.h": "c",
+        "string.h": "c",
+        "hand.h": "c"
+    }
+}

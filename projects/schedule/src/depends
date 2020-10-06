@@ -1,0 +1,14 @@
+Task.o: Task.c ../include/Task.h ../include/timer.h ../include/zlog.h
+STS.o: STS.c ../include/Task.h ../include/STS.h \
+ ../../../c/AdvanceC/include/heap.h ../../../c/AdvanceC/include/vector.h \
+ ../../../c/AdvanceC/include/vector.h ../include/timer.h \
+ ../include/Pqueue.h ../include/zlog.h
+time.o: time.c ../include/timer.h ../include/Task.h
+zlog.o: zlog.c ../include/zlog.h
+Pqueue.o: Pqueue.c ../../../c/AdvanceC/include/heap.h \
+ ../../../c/AdvanceC/include/vector.h \
+ ../../../c/AdvanceC/include/vector.h ../include/Pqueue.h \
+ ../include/timer.h
+schedMain.o: schedMain.c ../include/Task.h ../include/STS.h \
+ ../../../c/AdvanceC/include/heap.h ../../../c/AdvanceC/include/vector.h \
+ ../../../c/AdvanceC/include/vector.h ../include/timer.h

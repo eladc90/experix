@@ -1,0 +1,53 @@
+
+CC	= g++ -pthread 
+CXX = g++
+
+CFLAGS = -ansi -pedantic -Wall -Werror 
+CFLAGS+= -g3
+CXXFLAGS = $(CFLAGS) -std=c++03 
+LDLFALSGS = -ldl
+CPPFLAGS = -fpic -I$(SRC_DIR) -I$(INC_DIR) -I$(SO_DIR)  
+SO_FLAGS = -shared
+
+SO_DIR = ../../so/
+SRC_DIR = ../../source/
+INC_DIR = ../../include/
+
+OBJS =  mvp_so_test.o 
+SO_OBJS = $(SO_DIR)sprinkel_controller.o $(SRC_DIR)location.o $(SRC_DIR)type.o $(SRC_DIR)id.o\
+$(SO_DIR)door_controller_2_floor.o $(SO_DIR)extern.o $(SO_DIR)fire_sensor.o $(SRC_DIR)event.o $(SRC_DIR)event_creator.o $(SRC_DIR)agent_info.o\
+$(SRC_DIR)event_pusher.o $(SRC_DIR)event_bus.o $(SRC_DIR)mutex.o $(SRC_DIR)condition_var.o $(SRC_DIR)common_utils.o\
+$(SRC_DIR)event_puller.o $(SRC_DIR)hub.o $(SRC_DIR)distribution_list.o $(SRC_DIR)hub_utils.o\
+$(SRC_DIR)subcriber_list.o $(SRC_DIR)dispather_pool.o $(SRC_DIR)dispather_runnable.o $(SRC_DIR)key_generator.o\
+$(SRC_DIR)thread.o $(SRC_DIR)task_consumer.o $(SRC_DIR)thread_container.o $(SRC_DIR)thread_pool.o \
+$(SRC_DIR)distributer_pool.o $(SRC_DIR)distributer_pool_utils.o $(SRC_DIR)disribute_predicate.o \
+$(SRC_DIR)dispathcer.o $(SRC_DIR)dispather_utils.o $(SRC_DIR)initializer.o\
+
+TARGET = mvp_so_test
+SO_TARGET = lib_controllers.so
+
+$(SO_TARGET): $(SO_OBJS)
+	$(CC) $(CPPFLAGS) $(SO_FLAGS) -o $(SO_TARGET) $(SO_OBJS) $(LDLFALSGS)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJS) $(SO_OBJS) $(LDLFALSGS)
+
+
+#dependency on header file.
+
+all: $(SO_TARGET) $(SO_OBJS) $(TARGET) $(OBJS) 
+	./$(TARGET) $(SO_TARGET)
+
+check: $(SO_TARGET) $(SO_OBJS) $(TARGET) $(OBJS) 
+	./$(TARGET) $(SO_TARGET)
+
+so:	$(SO_TARGET) $(SO_OBJS)
+	./$(SO_TARGET)
+
+valgrind: $(TARGET)
+	valgrind ./$(TARGET)
+
+clean:
+	rm -f $(TARGET) $(OBJS) $(SO_TARGET) $(SO_OBJS)
+
+.PHONY: clean  vlagrind check
